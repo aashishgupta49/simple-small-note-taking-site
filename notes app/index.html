@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Notes App</title>
+  </head>
+  <body>
+    <h1>Notes App</h1>
+    <form>
+      <textarea id="notes" rows="10" cols="50"></textarea>
+      <br>
+      <button type="button" onclick="saveNotes()">Save Notes</button>
+    </form>
+    <div id="saved-notes"></div>
+    <script>
+      // Load saved notes from local storage
+      window.onload = function() {
+        var savedNotes = localStorage.getItem("notes");
+        if (savedNotes !== null) {
+          document.getElementById("notes").value = savedNotes;
+          document.getElementById("saved-notes").innerHTML = "<h2>Saved Notes:</h2><p>" + savedNotes + "</p>";
+        }
+      };
+
+      // Save notes to local storage
+      function saveNotes() {
+        var notes = document.getElementById("notes").value;
+        localStorage.setItem("notes", notes);
+        document.getElementById("saved-notes").innerHTML = "<h2>Saved Notes:</h2><p>" + notes + "</p>";
+        alert("Notes saved!");
+      }
+    </script>
+  </body>
+</html>
